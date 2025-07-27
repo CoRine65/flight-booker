@@ -1,24 +1,18 @@
-# README
+TOP link: https://www.theodinproject.com/lessons/ruby-on-rails-flight-booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+1. App Goals: 
+    - to book a one way flight
 
-* Ruby version
+2. Lesson Goals: 
+    - populating 
+    - building drop down menus
+    - radio buttons
+    - nested submissions
+    - seed database
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Buidling app: 
+Step 1: Plan out models and associations
+Step 2: Prepare git repository
+    - clone into desire folder
+    - edit read me (commit 1)
