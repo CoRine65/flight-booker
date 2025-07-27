@@ -39,3 +39,10 @@ Step 3: Building the Models
             puts flight.departure_airport.code  # => "SFO"
             puts flight.arrival_airport.code    # => "LAX"
             puts booking.passengers.first.name  # => "Jane Doe"
+        (commit 3)
+    - Seeding the needed information:
+        - airport codes
+        - flight times
+        -learned: Seeding creates consistent, reusable data for development.
+            Instead of writing data manualling in the Rails console, Rails gives a dedicated file: db/seeds.rb for defining what data is needed during set up.
+            - needs gem "Faker": to generate realistic future datetimes for flights
