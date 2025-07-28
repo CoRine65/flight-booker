@@ -43,6 +43,8 @@ Step 3: Building the Models
     - Seeding the needed information:
         - airport codes
         - flight times
+        - booking & passengers
         -learned: Seeding creates consistent, reusable data for development.
             Instead of writing data manualling in the Rails console, Rails gives a dedicated file: db/seeds.rb for defining what data is needed during set up.
             - needs gem "Faker": to generate realistic future datetimes for flights
+        (commit 4)
