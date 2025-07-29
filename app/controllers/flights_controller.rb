@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   def index
-    @airports = Airport.all.order(:code) # for dropdowns
+      @airports = Airport.all.order(:code) # for dropdowns
 
     if params[:search]
       departure_id = params[:departure_airport_id]
@@ -16,6 +16,8 @@ class FlightsController < ApplicationController
       else
         []
       end
+      Rails.logger.info("Flights found: #{@flights.count}")
+      flash.now[:notice] = "No flights match your criteria." if @flights.empty?
     else
       @flights = []
     end

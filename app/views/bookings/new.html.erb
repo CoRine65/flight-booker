@@ -1,0 +1,19 @@
+<%= form_with model: @booking, local: true do |form| %>
+  <%= form.hidden_field :flight_id %>
+
+  <% @booking.passengers.each_with_index do |passenger, index| %>
+    <h3>Passenger <%= index + 1 %></h3>
+    <%= form.fields_for :passengers, passenger do |p_form| %>
+      <div>
+        <%= p_form.label :name %>
+        <%= p_form.text_field :name %>
+      </div>
+      <div>
+        <%= p_form.label :email %>
+        <%= p_form.email_field :email %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= form.submit "Book Flight" %>
+<% end %>

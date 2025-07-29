@@ -1,0 +1,24 @@
+<h1>Booking Confirmation</h1>
+
+<p><strong>Flight:</strong></p>
+<ul>
+  <li>
+    <strong>From:</strong> <%= @booking.flight.departure_airport.code %><br>
+    <strong>To:</strong> <%= @booking.flight.arrival_airport.code %><br>
+    <strong>Date:</strong> <%= @booking.flight.start_datetime.strftime("%A, %B %d at %I:%M %p") %>
+  </li>
+</ul>
+
+<p><strong>Passengers:</strong></p>
+<ul>
+  <% @booking.passengers.each do |passenger| %>
+    <li>
+      <%= passenger.name %> — <%= passenger.email %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+
+<%= link_to "Back to Search", flights_path, style: "display: inline-block; margin-top: 20px; color: #007bff;" %>

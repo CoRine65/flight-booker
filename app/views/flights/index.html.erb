@@ -1,6 +1,8 @@
 <h1>Search for a Flight</h1>
 
 <%= form_with url: flights_path, method: :get, local: true do |form| %>
+  <%= hidden_field_tag :search, true %>
+
   <div>
     <%= label_tag :departure_airport_id, "From:" %>
     <%= select_tag :departure_airport_id, options_from_collection_for_select(@airports, :id, :code), prompt: "Choose Departure" %>
@@ -30,10 +32,12 @@
           <strong><%= flight.departure_airport.code %></strong> → 
           <strong><%= flight.arrival_airport.code %></strong> |
           <%= flight.start_datetime.strftime("%A, %B %d at %I:%M %p") %>
+          <%= link_to "Select", new_booking_path(flight_id: flight.id) %>
         </li>
       <% end %>
     </ul>
   <% else %>
-    <p>No flights match your criteria.</p>
+    <p>No flights found for the selected date and route.</p>
   <% end %>
 <% end %>
+

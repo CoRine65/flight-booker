@@ -48,3 +48,12 @@ Step 3: Building the Models
             Instead of writing data manualling in the Rails console, Rails gives a dedicated file: db/seeds.rb for defining what data is needed during set up.
             - needs gem "Faker": to generate realistic future datetimes for flights
         (commit 4)
+    - Creating Controller: Flight
+        - added controller index
+        - set routes
+        - tested
+        (commit 5)
+    - Creating Bookings and Confirmations:
+        - Error: I wanted there to be a flash message or notice, when no flight was found. However, it would no show despire adding flash notices in multiple places.
+            - cause: i did not know if it was passing through or it did not have the proper display logic. what helped to display was rails logger
+       - due to random generation, i created a fixed seed flight to test booking and confirmation.

@@ -1,26 +1,29 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 require 'faker'
-
-Airport.destroy_all
+ActiveRecord::Base.connection.execute("PRAGMA foreign_keys = OFF")
 Flight.destroy_all
+Airport.destroy_all
+ActiveRecord::Base.connection.execute("PRAGMA foreign_keys = ON")
 
-codes = [ "JFK", "LAX", "ORD", "ATL", "SFO" ]
-airports = codes.map { |code| Airport.create!(code: code) }
+airports = {
+  "JFK" => Airport.create!(code: "JFK"),
+  "LAX" => Airport.create!(code: "LAX"),
+  "SFO" => Airport.create!(code: "SFO"),
+  "ORD" => Airport.create!(code: "ORD"),
+  "SEA" => Airport.create!(code: "SEA")
+}
+
+Flight.create!(
+  departure_airport: airports["LAX"],
+  arrival_airport: airports["SFO"],
+  start_datetime: DateTime.new(2025, 7, 29, 14, 0, 0),
+)
 
 20.times do
-  departure, arrival = airports.sample(2)
+  departure, arrival = airports.values.sample(2)
   while departure == arrival
-    departure, arrival = airports.sample(2)
+    departure, arrival = airports.values.sample(2)
   end
-    Flight.create!(
+  Flight.create!(
     departure_airport: departure,
     arrival_airport: arrival,
     start_datetime: Faker::Time.forward(days: 30, period: :morning)
@@ -45,3 +48,7 @@ puts "Creating bookings and passengers..."
 end
 
 puts "Seeding complete!"
+
+airports.each do |code, airport|
+  puts "#{code} => #{airport.id}"
+end
